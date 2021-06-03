@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta charset="ISO-8859-1">
+	<title>Compras</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}"> 
+	
+</head>
+
+<body>
+	
+		<div class="container">
+			<header th:replace="layout/header :: header"></header>
+				<div class="row " >
+					<section class="col-md-9 bg-dark">
+						<div class="btn btn-light">
+							<a th:href="@{/producto/nuevo}">Nuevo</a>			
+						</div>
+						
+						<div class="titulo01 text-center text-white">
+							<h3>NUEVA COMPRA DE UN PRODUCTO</h3>
+						</div>
+						
+						<form th:action="@{/compra/guardar}" th:object="${compra}" method="post">
+								
+							<div class="form-row">
+							    <div class="col-md-6 mb-3">
+							      <label for="codigo">Id de la Compra</label>
+							      <input type="number" class="form-control" id="id" th:field="*{codigo}" required>
+							    </div>
+							    
+							    <div class="col-md-6 mb-3">
+							      <label for="producto">Seleccionar Producto</label>
+							      <select th:field="*{producto.codigo}" id="producto" class="form-control">
+									  <option th:each="prod : ${productos}" th:value="${prod.codigo}" th:text="${prod.nombre}"></option>
+									</select>
+							    </div>
+							    
+							    <div class="col-md-6 mb-3">
+							      <label for="cantidad">Cantidad</label>
+							      <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}" required>
+							    </div>
+							</div>
+	
+						<button type="submit" class="btn text-white btn-primaty bt-sm">Enviar</button>
+						
+						</form>
+
+					</section>
+					<aside th:replace="layout/publicidad :: publicidad"></aside>
+				</div>	
+			<footer th:replace="layout/footer :: footer"></footer>
+		</div>
+
+ <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+ <script type="text/javascript" th:src="@{/webjars/popper.js/1.16.1/dist/popper.min.js}"></script>
+ <script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

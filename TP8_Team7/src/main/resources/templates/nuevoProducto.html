@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Formulario</title>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}"> 
+</head>
+<body>
+
+	<div class="container">
+		<header th:replace="layout/header :: header"></header>
+			<div class="row " >
+				<section class="col-md-9 bg-dark">
+				
+					<div class="titulo01 text-center text-white">
+						<h3>FORMULARIO DE ALTA DE PRODUCTOS</h3>
+					</div>
+	
+							<form action="/producto/guardar" th:object="${producto}" method="post">
+							
+										<div class="text-white">
+										<label for="txtNombre">Nombre del Producto</label>
+										<input id="txtNombre" type="text" th:field="*{nombre}"/>
+										<br></br>
+										<label>Codigo del Producto</label>
+										<input type="number" th:field="*{codigo}"/>
+										<br></br>
+										<label>Marca del Producto</label>
+										<input type="text" th:field="*{marca}"/>
+										<br></br>
+										<label>Precio del Producto</label>
+										<input type="number" th:field="*{precio}"/>
+										<br></br>
+										<label>Stock del Producto</label>
+										<input type="number" th:field="*{stock}"/>
+							      		<br></br>
+							      		<input type="submit" value="Enviar">
+							      		</div>
+							 </form>	
+						 
+						</section>
+					<aside th:replace="layout/publicidad :: publicidad"></aside>
+				</div>	
+			<footer th:replace="layout/footer :: footer"></footer>
+		</div>	
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Clientes</title>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}"> 
+</head>
+<body>
+<div class="bg-info titulo01 text-center">
+<h1>Listado de clientes</h1>
+</div>
+            <div class="table-responsive">
+			<table class="table table-striped table-dark">
+		<tr>
+			<th> Tipo de Documento : </th>
+			<th> Numero de Documento :  </th>
+			<th> Apellido y Nombre : </th>
+			<th> Fecha de nacimiento :</th>
+			<th> Edad :</th>
+			<th> Telefono :</th>
+			<th> Fecha de ultima Compra :</th>
+			<th> Datos Adicionales :</th>
+		</tr>
+		<tr th:each="c:${clientes}">
+			<td th:text="${c.tipoDocumento}"></td>
+			<td th:text="${c.numeroDocumento}"></td>
+			<td th:text="${c.mayuscula}"></td>
+			<td th:text="${#temporals.format(c.fechaNacimiento, 'dd/MM/yyyy')}"></td>
+			<td th:text="${c.getEdad}"></td>
+			<td th:text="${c.codigoAreaTelefono} + '-' + ${c.numeroTelefono}"></td>
+			<td th:text="${#temporals.format(c.fechaUltimaCompra, 'dd-MM-yyyy')}"></td>		
+			<td th:utext="' # ProximoCumpleaños ' + '<br/>' + ${c.getTimeCumple} + '<br/>  # Tiempo Transacurrido desde Nacimenito En Dias ' + ${c.getTimeNaciMiento} + '<br/> # Tiempo Transcurrido desde Ultima Compra: ' + '<br/>' + ${c.getTimeUltimaC}"></td>	
+		</tr>
+		</table>
+			</div>
+
+<a href="/cliente/nuevo">Agregar Nuevo Cliente</a>	
+	
+</body>
+</html>

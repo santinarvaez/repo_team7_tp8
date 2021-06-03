@@ -1,0 +1,58 @@
+0<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+	<meta charset="ISO-8859-1">
+	<title>LISTA DE COMPRAS</title>
+	<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}">
+	<link rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}"> 
+	
+</head>
+
+<body>
+	
+		<div class="container">
+			<header th:replace="layout/header :: header"></header>
+				<div class="row " >
+					<section class="col-md-9 bg-dark">
+						<div class="btn btn-light">
+							<a th:href="@{/compra/nueva}">Nuevo</a>			
+						</div>
+						<div class="titulo01 text-center text-white">
+							<h3>LISTA DE COMPRAS</h3>
+						</div>
+						
+					<table id="tbCompras" border=1 class="table table-dark table-striped">
+								<thead>
+									<tr>
+										<th>ID de la compra</th>
+										<th>Nombre del producto</th>
+										<th>Cantidad</th>
+										<th>Total</th>
+									</tr>
+								</thead>
+									<tbody>
+									
+										<tr th:each="c : ${listacompras}">
+						
+											<td th:text="${c.codigo}"></td>
+											<td th:text="${c.producto.nombre}"></td>
+											<td th:text="${c.cantidad}"></td>
+											<td th:text="${c.total}"></td>
+											
+										</tr>
+									</tbody>	
+							</table>	
+
+					</section>
+					<aside th:replace="layout/publicidad :: publicidad"></aside>
+				</div>	
+			<footer th:replace="layout/footer :: footer"></footer>
+		</div>
+
+ <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+ <script type="text/javascript" th:src="@{/webjars/popper.js/1.16.1/dist/popper.min.js}"></script>
+ <script type="text/javascript" th:src="@{/webjars/bootstrap/4.6.0/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8">
+<title>Formulario</title>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}"> 
+</head>
+<body>
+<div class="bg-info titulo01 text-center">
+<h3>FORMULARIO DE ALTA DE PRODUCTOS</h3>
+</div>
+<form action="/producto/guardar" th:object="${producto}" method="post">
+			<label for="txtNombre">Nombre del Producto</label>
+			<input id="txtNombre" type="text" th:field="*{nombre}"/>
+			</br>
+			<label>Codigo del Producto</label>
+			<input type="number" th:field="*{codigo}"/>
+			</br>
+			<label>Marca del Producto</label>
+			<input type="text" th:field="*{marca}"/>
+			</br>
+			<label>Precio del Producto</label>
+			<input type="number" th:field="*{precio}"/>
+			</br>
+			<label>Stock del Producto</label>
+			<input type="number" th:field="*{stock}"/>
+      		</br>
+      		<input type="submit" value="Enviar">
+      		</form>		
+</body>
+</html>

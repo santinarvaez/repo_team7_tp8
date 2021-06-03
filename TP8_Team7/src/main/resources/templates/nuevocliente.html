@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Nuevo Cliente</title>
+<link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/4.6.0/css/bootstrap.min.css}">
+<link rel="stylesheet" type="text/css" th:href="@{/css/miestilo.css}"> 
+</head>
+	<body> 
+		<div class="container">
+			<header th:replace="layout/header :: header"></header>
+			
+			<div class="row" >
+				<section class="col-md-9 bg-dark">
+	
+			<div class="bg-info titulo01 text-center">
+			<h3>FORMULARIO DE ALTA DE CLIENTES</h3>
+			</div>
+	
+			<form th:action="@{/cliente/guardar}" th:object="${cliente}" th:method="post">
+				<div class="text-white">
+					<label for ="tipoDocumento">Tipo de Documento</label>
+					<select id="tipoDocumento" th:field="*{tipoDocumento}">
+						<option value=" "selected>Seleccione</option>
+						<option value="dni">DNI</option>
+						<option value="pasaporte">Pasaporte</option>
+						
+					</select>
+					<br></br>
+					<label>Numero de Documento</label>
+					<input type="number" th:field="*{numeroDocumento}"/>
+					<br></br>
+					<label>Apellido y Nombre</label>
+					<input type="text" th:field="*{nombreApellido}"/>
+					<br></br>
+					<label>E-mail</label>
+					<input type="email" th:field="*{email}"/>
+					<br></br>
+					<label>Fecha de Nacimiento</label>
+					<input type="date" th:field="*{fechaNacimiento}"/>
+					<br></br>
+		      		
+				  	<h3 align="center" class="text-white">CUENTA NUEVA</h3>
+				  	
+					
+					<div class="form-group row">
+				    	<label for="saldo" class="col-md-4 col-form-label">Saldo</label>
+				    	<div class="col-md-8">
+				      		<input type="number" class="form-control" id="sueldo" th:field="*{cuenta.saldo}">
+				    	</div>
+				  	</div>
+				  	
+		 				<div class="form-group row">
+				    	<label for="fechaCreacion" class="col-md-4 col-form-label">Fecha de creación</label>
+				    	<div class="col-md-8">
+				      		<input type="date" class="form-control" id="fechaCreacion" th:field="*{cuenta.fechaCreacion}">
+				    	</div>
+				  	</div>
+				  	
+				  	<fieldset class="form-group row">
+					    <legend class="col-form-label col-md-4 float-md-left pt-0">Estado de Cuenta</legend>
+					    <div class="col-md-8">
+					      <div class="form-check">			      	
+					        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="ACTIVA" th:field="*{cuenta.estado}">
+					        <label class="form-check-label" for="estado">
+					          ACTIVA
+					        </label>
+					      </div>
+					      
+					      <div class="form-check">
+					        <input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="INACTIVA" th:field="*{cuenta.estado}">
+					        <label class="form-check-label" for="estado">
+					          INACTIVA
+					        </label>
+					      </div>
+					    </div>
+					</fieldset>
+					
+					
+					<input type="submit" value="Guardar"></input>
+				</div>
+				</form>
+				
+				
+			</section>
+			<aside th:replace="layout/publicidad :: publicidad"></aside>
+		</div>	
+		<footer th:replace="layout/footer :: footer"></footer>
+	</div>
+		
+				  	
+		
+						  	
+	</body>
+</html>
