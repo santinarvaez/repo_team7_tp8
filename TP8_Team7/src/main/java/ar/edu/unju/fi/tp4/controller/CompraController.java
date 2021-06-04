@@ -4,6 +4,8 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,8 @@ import ar.edu.unju.fi.tp4.service.IProductoService;
 
 @Controller
 public class CompraController {
+	
+	private static final Log LOGGER = LogFactory.getLog(CompraController.class);
 	
 	@Autowired
 	private Compra compra;
@@ -84,6 +88,7 @@ public class CompraController {
 	public ModelAndView eliminarCompraPage(@PathVariable(value = "id")Long id) {
 		ModelAndView model = new ModelAndView("redirect:/compra/listado");
 		compraService.eliminarCompra(id);
+		LOGGER.info("Retorna: "+id);
 		return model;
 	}
 	

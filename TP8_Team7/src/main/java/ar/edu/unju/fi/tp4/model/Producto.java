@@ -57,17 +57,23 @@ public class Producto {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Producto(Long id, int codigo, String nombre, double precio, String marca, int stock) {
+	
+	public Producto(Long id, @Min(value = 1, message = "Ingrese un valor mayor a 1") int codigo,
+			@NotEmpty(message = "Este campo debe ser completado") @Size(min = 5, max = 40, message = "El nombre debe tener como mínimo 5 caracteres") String nombre,
+			@Min(value = 0, message = "Debe ingresar un valor mayor a 0") double precio,
+			@NotEmpty(message = "Este campo debe ser completado") @Size(min = 3, max = 40, message = "El nombre debe tener como mínimo 3 caracteres") String marca,
+			@Min(value = 0, message = "Debe ingresar un valor mayor a 0") int stock, Compra compra) {
 		super();
+		this.id = id;
 		this.codigo = codigo;
 		this.nombre = nombre;
 		this.precio = precio;
 		this.marca = marca;
 		this.stock = stock;
+		this.compra = compra;
 	}
 
-	
-	
+
 	public Long getId() {
 		return id;
 	}
