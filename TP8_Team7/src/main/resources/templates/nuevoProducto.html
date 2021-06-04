@@ -22,18 +22,23 @@
 										<div class="text-white">
 										<label for="txtNombre">Nombre del Producto</label>
 										<input id="txtNombre" type="text" th:field="*{nombre}"/>
+										<div class="form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></div>
 										<br></br>
 										<label>Codigo del Producto</label>
 										<input type="number" th:field="*{codigo}"/>
+										<div class="form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></div>
 										<br></br>
 										<label>Marca del Producto</label>
 										<input type="text" th:field="*{marca}"/>
+										<div class="form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></div>
 										<br></br>
 										<label>Precio del Producto</label>
 										<input type="number" th:field="*{precio}"/>
+										<div class="form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></div>
 										<br></br>
 										<label>Stock del Producto</label>
 										<input type="number" th:field="*{stock}"/>
+										<div class="form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></div>						
 							      		<br></br>
 							      		<input type="submit" value="Enviar">
 							      		</div>

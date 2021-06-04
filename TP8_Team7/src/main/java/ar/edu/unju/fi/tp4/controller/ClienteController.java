@@ -1,10 +1,13 @@
 package ar.edu.unju.fi.tp4.controller;
 
+import java.util.List;
 import java.util.Optional;
+import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -33,11 +36,24 @@ public class ClienteController {
 	}
 	
 	@PostMapping("/cliente/guardar")
-	public ModelAndView guardarClientePage(@ModelAttribute("cliente")Cliente cliente) {
-		ModelAndView model = new ModelAndView("clientes");
-		clienteService.guardarCliente(cliente);
-		model.addObject("clientes", clienteService.getClientes());
-		return model;
+	public ModelAndView guardarClientePage(@Valid @ModelAttribute("cliente")Cliente cliente,BindingResult resultadoValidacion) {
+		//ModelAndView model = new ModelAndView("clientes");
+		ModelAndView modelView;
+		
+		if(resultadoValidacion.hasErrors()==true){
+			
+			modelView = new ModelAndView("nuevocliente");
+			List<Cliente> clientes = clienteService.getClientes();
+			modelView.addObject("clientes",clientes);
+			return modelView;
+		}else{
+			
+			modelView = new ModelAndView("clientes");
+			clienteService.guardarCliente(cliente);
+			modelView.addObject("clientes", clienteService.getClientes());
+			return modelView;
+		}
+		
 	}
 	
 	@GetMapping("/cliente/listado")

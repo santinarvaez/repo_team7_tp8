@@ -11,6 +11,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
@@ -25,13 +28,16 @@ public class Cuenta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Min(value = 0,message = "Ingrese un valor mayor a 0")
 	@Column(name="cta_saldo")
 	private double saldo;
 	
+	@NotNull(message = "Este campo debe ser completado")
 	@Column(name="cta_fecha_creacion")
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate fechaCreacion;
 	
+	@NotEmpty(message = "Por valor seleccione una opción")
 	@Column(name="cta_estado")
 	private String estado;
 	

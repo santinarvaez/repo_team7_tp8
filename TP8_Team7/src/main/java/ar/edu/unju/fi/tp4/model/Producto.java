@@ -10,6 +10,9 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 
 import org.springframework.stereotype.Component;
 
@@ -23,18 +26,25 @@ public class Producto {
 	@Column(name = "prod_id")
 	private Long id;
 	
+	@Min(value = 1,message="Ingrese un valor mayor a 1")
 	@Column(name="prod_codigo", nullable = false)
 	private int codigo;
 	
+	@NotEmpty(message = "Este campo debe ser completado")
+	@Size(min=5,max=40,message="El nombre debe tener como mínimo 5 caracteres")
 	@Column(name="prod_nombre")
 	private String nombre;
 	
+	@Min(value=0,message="Debe ingresar un valor mayor a 0")
 	@Column(name="prod_precio")
 	private double precio;
 	
+	@NotEmpty(message = "Este campo debe ser completado")
+	@Size(min=3,max=40,message="El nombre debe tener como mínimo 3 caracteres")
 	@Column(name="prod_marca")
 	private String marca;
 	
+	@Min(value=0,message="Debe ingresar un valor mayor a 0")
 	@Column(name="prod_stock")
 	private int stock;
 	
