@@ -1,9 +1,12 @@
 package ar.edu.unju.fi.tp4.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,11 +37,18 @@ public class CuentaController {
 	}
 	
 	@PostMapping("/cuenta/guardar")
-	public ModelAndView guardarCuentaPage(@ModelAttribute("cuenta") Cuenta cuenta) {
-		ModelAndView model = new ModelAndView("lista-cuentas");
-		cuentaService.guardarCuenta(cuenta);
-		model.addObject("cuentas", cuentaService.getCuentas());
-		return model;
+	public ModelAndView guardarCuentaPage(@Valid @ModelAttribute("cuenta") Cuenta cuenta,BindingResult resultadoValidacion) {
+		//ModelAndView model = new ModelAndView("lista-cuentas");
+		ModelAndView modelView;
+		if(resultadoValidacion.hasErrors()==true) {
+			modelView = new ModelAndView("cuentaform");
+			return modelView;
+		}else {
+			modelView = new ModelAndView("lista-cuentas");
+			cuentaService.guardarCuenta(cuenta);
+			modelView.addObject("cuentas", cuentaService.getCuentas());
+			return modelView;
+		}
 	}
 	
 	@GetMapping("/cuenta/listado")

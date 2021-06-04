@@ -16,6 +16,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -31,34 +35,44 @@ public class Cliente {
 	@Column(name = "cte_id")
 	private Long id;
 	
+	@NotEmpty(message="El tipo no puede estar vacio")
 	@Column(name="cte_tipo_doc")
 	private String tipoDocumento;
 	
+	@Min(value = 1,message="El minimo valor es 1")
 	@Column(name="cte_num_doc")
 	private int numeroDocumento;
 	
+	@NotEmpty(message="Este campo no puede estar vacio")
 	@Column(name="cte_nya")
 	private String nombreApellido;
 	
+	@Email(message="Ingrese un email valido")
 	@Column(name="cte_email")
 	private String email;
 	
+	@NotEmpty(message="Este campo debe ser completado")
 	@Column(name="cte_password")
 	private String password;
 	
+	@NotNull(message="Este campo debe ser completado")
 	@Column(name="cte_fecha_nac")
 	@DateTimeFormat(pattern = "yyyy-MM--dd")
 	private LocalDate fechaNacimiento;
 	
+	@Min(value = 12, message="Ingrese un valor mayor a 12")
 	@Column(name="cte_edad")
 	private int edad;
 	
+	@Min(value = 1, message="Ingrese un valor mayor a 1")
 	@Column(name="cte_cod_area")
 	private int codigoAreaTelefono;
 	
+	@Min(value = 1, message="Ingrese un valor mayor a 1")
 	@Column(name="cte_num_telefono")
 	private int numeroTelefono;
 	
+	@NotNull(message="Este campo debe ser completado")
 	@Column(name="cte_fecha_ult_compra")
 	@DateTimeFormat(pattern = "yyyy-MM--dd")
 	private LocalDate fechaUltimaCompra;

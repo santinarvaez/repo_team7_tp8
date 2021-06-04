@@ -27,21 +27,26 @@
 								
 							<div class="form-row">
 							    <div class="col-md-6 mb-3">
-							      <label for="codigo">Id de la Compra</label>
+							      <label for="codigo" class="text-white">Id de la Compra</label>
 							      <input type="number" class="form-control" id="id" th:field="*{codigo}" required>
+							    	 <div class="form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('codigo')}" th:errors="*{codigo}"></div>		
 							    </div>
 							    
+							    
 							    <div class="col-md-6 mb-3">
-							      <label for="producto">Seleccionar Producto</label>
-							      <select th:field="*{producto.codigo}" id="producto" class="form-control">
+							      <label for="producto" class="text-white">Seleccionar Producto</label>
+							     	 <select th:field="*{producto.codigo}" id="producto" class="form-control">
 									  <option th:each="prod : ${productos}" th:value="${prod.codigo}" th:text="${prod.nombre}"></option>
 									</select>
 							    </div>
 							    
+							    
 							    <div class="col-md-6 mb-3">
-							      <label for="cantidad">Cantidad</label>
+							      <label for="cantidad" class="text-white">Cantidad</label>
 							      <input type="number" class="form-control" id="cantidad" th:field="*{cantidad}" required>
+							    	<div class="form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('cantidad')}" th:errors="*{cantidad}"></div>
 							    </div>
+							    
 							</div>
 	
 						<button type="submit" class="btn text-white btn-primaty bt-sm">Enviar</button>

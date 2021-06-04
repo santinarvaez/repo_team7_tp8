@@ -13,6 +13,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Min;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -25,12 +27,15 @@ public class Compra {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@Min(value = 1,message = "Ingrese un valor mayor a 1")
 	@Column(name = "comp_codigo")
 	private Long codigo;
 	
+	@Min(value = 1,message = "Ingrese un valor mayor a 1")
 	@Column(name = "comp_cantidad")
 	private int cantidad;
 	
+	//Método se calcula en el controller solo, no necesita restricción.
 	@Column(name = "comp_total")
 	private double total;
 	
