@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 
@@ -26,7 +27,7 @@ import ar.edu.unju.fi.tp4.service.IProductoService;
 @Controller
 public class CompraController {
 	
-	private static final Log LOGGER = LogFactory.getLog(CompraController.class);
+private static final Log LOGGER = LogFactory.getLog(CompraController.class);
 	
 	@Autowired
 	private Compra compra;
@@ -66,11 +67,19 @@ public class CompraController {
 		
 	}
 	
-	@GetMapping("/compra/listado")
+	/*@GetMapping("/compra/listado")
 	public ModelAndView getListadoCompraPage() {
 		ModelAndView model = new ModelAndView("lista-compras");
 		model.addObject("listacompras", compraService.getCompras());
 		return model;
+	}*/
+	
+	
+	@GetMapping("/compra/listado")
+	public String getCompraPage(Model model) {
+		model.addAttribute("compra",compraService.getCompra());
+		model.addAttribute("listacompras", compraService.getCompras());
+		return "lista-compras";
 	}
 	
 
@@ -90,6 +99,13 @@ public class CompraController {
 		compraService.eliminarCompra(id);
 		LOGGER.info("Retorna: "+id);
 		return model;
+	}
+	
+	@GetMapping("/compra/busqueda")
+	public String getBuscarCompraConFiltro(@RequestParam(value = "total")double total, @RequestParam(name = "nombre")String nombre, Model model, @ModelAttribute(name="compra")Compra compra) {
+		model.addAttribute("compra", compraService.getCompra());
+		model.addAttribute("listacompras", compraService.buscarCompras(nombre, total));
+		return "lista-compras";
 	}
 	
 }

@@ -9,7 +9,9 @@ public interface ICompraService {
 	public void generarTablaCompras();
 	public void guardarCompra(Compra compra);
 	public List<Compra> getCompras();
+	public Compra getCompra();
 	public Compra consultarUltimaCompra();
 	public Optional<Compra> getCompraPorId(Long id);
 	public void eliminarCompra(Long id);
+	public List<Compra> buscarCompras(String nombre,double total);
 }
