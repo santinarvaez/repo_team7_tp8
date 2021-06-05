@@ -1,5 +1,6 @@
 package ar.edu.unju.fi.tp4.serviceImp;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -14,6 +15,9 @@ import ar.edu.unju.fi.tp4.repository.ICompraRepository;
 public class CompraServiceMysqlImp implements ICompraService {
 	
 	@Autowired
+	private Compra compra;
+	
+	@Autowired
 	private ICompraRepository compraRepository;
 
 	@Override
@@ -26,6 +30,11 @@ public class CompraServiceMysqlImp implements ICompraService {
 	public void guardarCompra(Compra compra) {
 		compraRepository.save(compra);
 		
+	}
+	
+	@Override
+	public Compra getCompra() {
+		return compra;
 	}
 
 	@Override
@@ -51,6 +60,17 @@ public class CompraServiceMysqlImp implements ICompraService {
 		compraRepository.deleteById(id);
 	}
 
+	@Override
+	public List<Compra> buscarCompras(String nombre, double total) {
+		
+		List<Compra> compras = new ArrayList<Compra>();
+		if(!nombre.isEmpty() && total >= 0) {
+			compras = compraRepository.findByProductoNombreAndTotalGreaterThanEqual(nombre, total);
+		}else if(nombre.isEmpty() && total >= 0){
+			compras = compraRepository.findByTotalGreaterThanEqual(total);
+		}
+		return compras;
+	}
 }
 	
 

@@ -13,7 +13,7 @@
 			<div class="row" >
 				<section class="col-md-9 bg-dark">
 	
-			<div class="bg-info titulo01 text-center">
+			<div class="titulo01 text-center text-white">
 			<h3>FORMULARIO DE ALTA DE CLIENTES</h3>
 			</div>
 	
@@ -83,7 +83,7 @@
 					        </label>
 					      </div>
 					    </div>
-					    <div class="form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('estado')}" th:errors="*{estado}"></div>
+					    <div class="form-text text-danger col-sm-10 offset-2" th:if="${#fields.hasErrors('cuenta.estado')}" th:errors="*{cuenta.estado}"></div>
 					</fieldset>
 					
 					
